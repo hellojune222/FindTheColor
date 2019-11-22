@@ -1,0 +1,85 @@
+/*
+   @author:luowen
+   @time:2013-10-08
+   @desc:js to rgb color           
+*/
+<!doctype html>
+<html>
+    <head>
+        <title>js to rgb color</title>
+        <charset='utf-8' />
+    </head>
+    <body>
+        <input type='text' id='color' />
+        <button id="change">change to ten</button>
+        <span>eg: (#fff) ==> rgb(255,255,255)</span>
+        <br />
+        <input type="text" id="res" value="" />
+    </body>
+        <script type="text/javascript">
+        //获取对象
+        function $(id){
+            return document.getElementById(id);
+        }
+        //响应点击函数
+        $('change').onclick = function(){
+                if($('color').value == ''){
+                    alert('请输入需要转化的值如:#fff');
+                    return;
+                }
+                toRGB($('color').value);
+        }
+        function toRGB(msg){
+                var re = new RegExp(/^#([0-9a-fA-F]){3,6}$/);    
+                var flag = msg.match(re);
+                //alert(flag);
+                if(flag == null){
+                    //alert(msg);
+                    $('res').value = msg;
+                    $('res').style.color = 'red';
+                }
+                else{
+                    //#11 11 11
+                    var resStr = msg.substr(1);
+                    
+                    var resArr = spiltArr(resStr);
+                    
+                    var rgb = toTen(resArr);
+                    //console.log(resTen);
+                    //alert('rgb'+'('+rgb+')');
+                    $('res').value = 'rgb'+'('+rgb+')';
+                    $('res').style.color = 'blue';
+                }
+                
+        }
+        //将拿到的字符转化成十进制
+        function toTen(arr){
+            var rgb = ['','',''];
+            for(var i = 0;i < 3; i++){
+                rgb[i] = parseInt(arr[i],16);    
+            }
+            return rgb;
+        }
+        //将字符串分割成(cc,dd,ff)形式
+        function spiltArr(str){
+            var tmp = ['','',''];
+            var strLen = str.length;
+            if(strLen == 3){
+                var a = str.substr(0,1);    
+                var b = str.substr(1,1);    
+                var c = str.substr(2,1);
+                tmp[0] = a + a;
+                tmp[1] = b + b;
+                tmp[2] = c + c;
+                return tmp;    
+            }
+            else if(strLen == 6){
+                tmp[0] = str.substr(0,2);    
+                tmp[1] = str.substr(2,2);    
+                tmp[2] = str.substr(4,2);    
+                return tmp;
+            }
+        }
+
+    </script>
+    </html>
