@@ -23,7 +23,7 @@ function toRGB(msg) {
           alert("输入错误！");
      }
      else {
-          alert("hello");
+          
           var jieguo = ((255 - flag[1]) + "," + (255 - flag[2]) + "," + (255 - flag[3]));
           // 获取<p id="p-id">...</p>
           var p = document.getElementById('jieguo');
