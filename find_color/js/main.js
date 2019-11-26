@@ -28,7 +28,7 @@ function toRGB(msg) {
           // 计算
           var p = document.getElementById('jieguo');
           
-          p.innerHTML = jieguo; // <p id="p-id">ABC</p>
+          p.innerHTML = jieguo; // 
           
 	  }
 
